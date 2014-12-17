@@ -1,0 +1,1982 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+      .table {
+        background-color:#F5F5FF;
+        border-left:4px solid gray;
+        border-bottom:4px solid gray;
+        border-top:4px solid gray;
+        border-right:4px solid gray;
+        margin-bottom:3em;
+        margin-left:2em;
+        margin-right:2em;
+        padding:1em;
+      }
+      .tableNameHeading h1 {
+          display: inline;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-size:125%;
+        font-weight:bold;
+      }
+        
+      .tableNameHeading h2 {
+        display: inline;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-size:115%;
+        font-weight:normal;
+      }
+      
+      .tableComment { 
+        background-color:#e4efff; margin-bottom:20px;
+      }
+      
+      .tableDefinition { 
+        padding:2px;
+        border-collapse:collapse;
+        margin-top:1em;
+      }
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-top:1px solid #C0C0C0;
+      }
+
+      .tdLogicalColName {
+        width:20em;
+      }
+      
+      .tdPhysicalColName {
+        width:20em;
+      }
+      
+      .tdDataType {
+        width:10em;
+      }
+
+      .tdPkFlag {
+        width:4em;
+      }
+
+      .tdNullFlag {
+        width:9em;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-weight: bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-family: Segoe UI, Arial, sans-serif;
+        font-weight: bold;
+      }
+
+      .references {
+      }
+      .comment {
+        color:#666666;
+        margin-left:3em;
+        padding:0.25em;
+      }
+    </style>
+<title>mzDB_0.5.0_130603</title>
+</head>
+<body>
+<center>
+<h2>mzDB_0.5.0_130603</h2>
+</center>
+<h3>List of tables</h3>
+<ul>
+<li>
+<a href="#bounding_box">bounding_box</a>
+</li>
+<li>
+<a href="#bounding_box_rtree">bounding_box_rtree</a>
+</li>
+<li>
+<a href="#chromatogram">chromatogram</a>
+</li>
+<li>
+<a href="#cv">cv</a>
+</li>
+<li>
+<a href="#cv_term">cv_term</a>
+</li>
+<li>
+<a href="#cv_unit">cv_unit</a>
+</li>
+<li>
+<a href="#data_encoding">data_encoding</a>
+</li>
+<li>
+<a href="#data_processing">data_processing</a>
+</li>
+<li>
+<a href="#instrument_configuration">instrument_configuration</a>
+</li>
+<li>
+<a href="#mzdb">mzdb</a>
+</li>
+<li>
+<a href="#param_tree_schema">param_tree_schema</a>
+</li>
+<li>
+<a href="#processing_method">processing_method</a>
+</li>
+<li>
+<a href="#run">run</a>
+</li>
+<li>
+<a href="#run_slice">run_slice</a>
+</li>
+<li>
+<a href="#sample">sample</a>
+</li>
+<li>
+<a href="#scan_settings">scan_settings</a>
+</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a>
+</li>
+<li>
+<a href="#software">software</a>
+</li>
+<li>
+<a href="#source_file">source_file</a>
+</li>
+<li>
+<a href="#source_file_scan_settings_map">source_file_scan_settings_map</a>
+</li>
+<li>
+<a href="#spectrum">spectrum</a>
+</li>
+<li>
+<a href="#table_param_tree_schema">table_param_tree_schema</a>
+</li>
+<li>
+<a href="#target">target</a>
+</li>
+<li>
+<a href="#user_term">user_term</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<h1>bounding_box<a name="bounding_box"></a>
+</h1>
+<h2>
+      (Physical Name: bounding_box)
+      </h2>
+<p class="comment">The Bounding Box (BB) table aims to store a region of the run. A BB refers to a run slice which describes the m/z width of this BB. The first and last scan id describe the height in time dimension of the BB. Data points may be accumulated in m/z and time dimensions. In the simplest case a BB may store peaks of a full MS spectrum, implying that first and last scans correspond to the same record.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data</td><td class="tdTableDefinition">data</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A BLOB containing the data points using a given structure representation (see data_enconding table).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">run_slice_id
+                &nbsp;(<a href="#run_slice">FK</a>)
+              </td><td class="tdTableDefinition">run_slice_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A reference to the corresponding run_slice.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">first_spectrum_id
+                &nbsp;(<a href="#spectrum">FK</a>)
+              </td><td class="tdTableDefinition">first_spectrum_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A reference to the first spectrum of the BB.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">last_spectrum_id
+                &nbsp;(<a href="#spectrum">FK</a>)
+              </td><td class="tdTableDefinition">last_spectrum_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A reference to the last spectrum of the BB.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#spectrum">spectrum</a> through (first_spectrum_id)</li>
+<li>
+<a href="#spectrum">spectrum</a> through (last_spectrum_id)</li>
+<li>
+<a href="#run_slice">run_slice</a> through (run_slice_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#bounding_box_rtree">bounding_box_rtree</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>bounding_box_rtree<a name="bounding_box_rtree"></a>
+</h1>
+<h2>
+      (Physical Name: bounding_box_rtree)
+      </h2>
+<p class="comment">A virtual table used to index the bounding boxes with the help of a R*Tree structure automatically generated by SQLite. For more detailled information see http://www.sqlite.org/rtree.html.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)
+                &nbsp;(<a href="#bounding_box">FK</a>)
+              </td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The indentifier of the bounding box that corresponds to this index.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">min_mz</td><td class="tdTableDefinition">min_mz</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Minimum m/z of the corresponding BB.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">max_mz</td><td class="tdTableDefinition">max_mz</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Maximum m/z of the corresponding BB.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">min_time</td><td class="tdTableDefinition">min_time</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Minimum time of the corresponding BB.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">max_time</td><td class="tdTableDefinition">max_time</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Maximum time of the corresponding BB.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#bounding_box">bounding_box</a> through (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>chromatogram<a name="chromatogram"></a>
+</h1>
+<h2>
+      (Physical Name: chromatogram)
+      </h2>
+<p class="comment">A chromatogram may be simply be a total ion current (TIC) chromatogram of an ordinary MS1 or MS/MS run, or a chromatogram corresponding to a Q1,Q3 pair in a SRM run.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for this chromatogram. Examples:<br>sic, tic, ms1_tic, ms2_tic, bpc, transition_xxx_xxx</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">activation_type</td><td class="tdTableDefinition">activation_type</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The type of activation used for fragmentation.<br>This field stores only a 3 letters label (e.g. <br>CID, ETD, HCD), but more detailled information could be provided using the param_tree field.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_points</td><td class="tdTableDefinition">data_points</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A BLOB containing the data points using a given data representation (see data_enconding table).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">precursor</td><td class="tdTableDefinition">precursor</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally an XML string describing the method of precursor ion selection and activation (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">product</td><td class="tdTableDefinition">product</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally an XML string describing the method of product ion selection and activation in a precursor ion scan (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">run_id
+                &nbsp;(<a href="#run">FK</a>)
+              </td><td class="tdTableDefinition">run_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding run.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_processing_id
+                &nbsp;(<a href="#data_processing">FK</a>)
+              </td><td class="tdTableDefinition">data_processing_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the appropriate data_processing.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_encoding_id
+                &nbsp;(<a href="#data_encoding">FK</a>)
+              </td><td class="tdTableDefinition">data_encoding_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the appropriate data_encoding.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#run">run</a> through (run_id)</li>
+<li>
+<a href="#data_encoding">data_encoding</a> through (data_encoding_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+<li>
+<a href="#data_processing">data_processing</a> through (data_processing_id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>cv<a name="cv"></a>
+</h1>
+<h2>
+      (Physical Name: cv)
+      </h2>
+<p class="comment">Information about an ontology or CV source and a short 'lookup' tag to refer to.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The short label to be used as a reference tag with which to refer to this particular Controlled Vocabulary source description.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">full_name</td><td class="tdTableDefinition">full_name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The usual name for the resource (e.g. The PSI-MS Controlled Vocabulary).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">version</td><td class="tdTableDefinition">version</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The version of the CV from which the referred-to terms are drawn.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">uri</td><td class="tdTableDefinition">uri</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The URI for the resource.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#cv_unit">cv_unit</a> referencing (id)</li>
+<li>
+<a href="#cv_term">cv_term</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>cv_term<a name="cv_term"></a>
+</h1>
+<h2>
+      (Physical Name: cv_term)
+      </h2>
+<p class="comment">This table lists the CV terms used in the mzDB file.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">accession (PK)</td><td class="tdTableDefinition">accession</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The accession number of the referred-to term in the named resource (e.g.: MS:000012).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The actual name for the parameter, from the referred-to controlled vocabulary. This should be the preferred name associated with the specified accession number.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">unit_accession
+                &nbsp;(<a href="#cv_unit">FK</a>)
+              </td><td class="tdTableDefinition">unit_accession</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the CV accession number of the appropriate unit.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">cv_id
+                &nbsp;(<a href="#cv">FK</a>)
+              </td><td class="tdTableDefinition">cv_id</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding CV resource.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#cv">cv</a> through (cv_id)</li>
+<li>
+<a href="#cv_unit">cv_unit</a> through (unit_accession)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>cv_unit<a name="cv_unit"></a>
+</h1>
+<h2>
+      (Physical Name: cv_unit)
+      </h2>
+<p class="comment">This table lists the CV units used in the mzDB file.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">accession (PK)</td><td class="tdTableDefinition">accession</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The unit accession number (e.g., 'UO:0000266' for 'electron volt').</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The unit name (e.g., 'electron volt' for 'UO:0000266' ).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">cv_id
+                &nbsp;(<a href="#cv">FK</a>)
+              </td><td class="tdTableDefinition">cv_id</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding CV resource.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#cv">cv</a> through (cv_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#cv_term">cv_term</a> referencing (accession)</li>
+<li>
+<a href="#user_term">user_term</a> referencing (accession)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>data_encoding<a name="data_encoding"></a>
+</h1>
+<h2>
+      (Physical Name: data_encoding)
+      </h2>
+<p class="comment">Describes data encoding parameters used for data points storage.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">mode</td><td class="tdTableDefinition">mode</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Signal can be stored using 3 different modes: profile, centroided, fitted.<br>Profile mode represent the scanned data in a (sometimes only approcimately) regularly spaced format, sometimes with gaps. Centroided mode present the scanned data only by specifying the location and intensity of individual detected peaks.<br>Fitted mode is an enhencement of the centroided mode with additional information for each detected peak such as the left and right HWHMs.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">compression</td><td class="tdTableDefinition">compression</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field provides optionally the name of the algorithm used for data compression (e.g. zlib, lzma...).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">byte_order</td><td class="tdTableDefinition">byte_order</td><td class="tdTableDefinition">VARCHAR(13)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The byte order used for data encoding: little_endian or big_endian.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).<br>Note: CV params were originally stored in the binaryDataArray node of an mzML file. User params describes the data structure used for each data point.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+<li>
+<a href="#chromatogram">chromatogram</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>data_processing<a name="data_processing"></a>
+</h1>
+<h2>
+      (Physical Name: data_processing)
+      </h2>
+<p class="comment">Description of the way in which particular software were used. Variable methods should be described in the appropriate acquisition section - if no acquisition-specific details are found, then this information serves as the default.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for this data processing.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#processing_method">processing_method</a> referencing (id)</li>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+<li>
+<a href="#chromatogram">chromatogram</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>instrument_configuration<a name="instrument_configuration"></a>
+</h1>
+<h2>
+      (Physical Name: instrument_configuration)
+      </h2>
+<p class="comment">Description of a particular hardware configuration of a mass spectrometer. Each configuration must have one (and only one) of the three different components used for an analysis. For hybrid instruments, such as an LTQ-FT, there must be one configuration for each permutation of the components that is used in the document.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for this instrument configuration.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">component_list</td><td class="tdTableDefinition">component_list</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the componentList as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">software_id
+                &nbsp;(<a href="#software">FK</a>)
+              </td><td class="tdTableDefinition">software_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must be used to reference the 'id' of the appropriate software.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#software">software</a> through (software_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>mzdb<a name="mzdb"></a>
+</h1>
+<h2>
+      (Physical Name: mzdb)
+      </h2>
+<p class="comment">Information pertaining to the entire mzDB file (i.e. not specific to any part of the data set) is stored here.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">version (PK)</td><td class="tdTableDefinition">version</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The version of the mzDB format using tho following notation: majorVersion.minorVersion.maintenanceVersion</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">creation_timestamp</td><td class="tdTableDefinition">creation_timestamp</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The creation date of the mzDB file in the ISO-8601 notation (e.g. 2007-06-27T15:23:45.00035).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">file_content</td><td class="tdTableDefinition">file_content</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the fileContent as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">contact</td><td class="tdTableDefinition">contact</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the contacts as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications). These user params must be defined: BB_height_ms1, BB_height_msn, BB_width_ms1, BB_width_msn, is_no_loss.</div>
+</td>
+</tr>
+</table>
+<div class="references"></div>
+</div>
+<div class="tableNameHeading">
+<h1>param_tree_schema<a name="param_tree_schema"></a>
+</h1>
+<h2>
+      (Physical Name: param_tree_schema)
+      </h2>
+<p class="comment">Each record describes the schema of the params that can be set in the param_tree column of the corresponding table or in the data column of the shared_param_tree table. This schema can then be used by the client application to validate the data structure to be stored.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name (PK)</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The name of the schema.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">type</td><td class="tdTableDefinition">type</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The serialization format used for param tree data. May be XSD or JSON, but only XSD is currently supported.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">schema</td><td class="tdTableDefinition">schema</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the schema of the corresponding param_tree.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> referencing (name)</li>
+<li>
+<a href="#table_param_tree_schema">table_param_tree_schema</a> referencing (name)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>processing_method<a name="processing_method"></a>
+</h1>
+<h2>
+      (Physical Name: processing_method)
+      </h2>
+<p class="comment">Description of the way in which a particular software was used. The default peak processing method describes the base method used in the generation of a particular mzML file. Variable methods should be described in the appropriate acquisition section - if no acquisition-specific details are found, then this information serves as the default.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">number</td><td class="tdTableDefinition">number</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field allows a series of consecutive steps to be placed in the correct order.<br>Processing methods are ordered across all data processings.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_processing_id
+                &nbsp;(<a href="#data_processing">FK</a>)
+              </td><td class="tdTableDefinition">data_processing_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding data processing.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">software_id
+                &nbsp;(<a href="#software">FK</a>)
+              </td><td class="tdTableDefinition">software_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the appropriate software.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#software">software</a> through (software_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+<li>
+<a href="#data_processing">data_processing</a> through (data_processing_id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>run<a name="run"></a>
+</h1>
+<h2>
+      (Physical Name: run)
+      </h2>
+<p class="comment">A run in mzDB should correspond to a coherent set of spectra acquired on an instrument.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for this run.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">start_timestamp</td><td class="tdTableDefinition">start_timestamp</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The optional start timestamp of the run in the ISO-8601 notation (e.g. 2007-06-27T15:23:45.00035).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">sample_id
+                &nbsp;(<a href="#sample">FK</a>)
+              </td><td class="tdTableDefinition">sample_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the appropriate sample.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">default_instrument_config_id
+                &nbsp;(<a href="#instrument_configuration">FK</a>)
+              </td><td class="tdTableDefinition">default_instrument_config_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field MUST reference the 'id' of the default instrument configuration. If a scan does not reference an instrument configuration, it implicitly refers to this configuration.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">default_source_file_id
+                &nbsp;(<a href="#source_file">FK</a>)
+              </td><td class="tdTableDefinition">default_source_file_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the default source file. If a spectrum or scan does not reference a source file and this field is set, then it implicitly refers to this source file.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">default_scan_processing_id
+                &nbsp;(<a href="#data_processing">FK</a>)
+              </td><td class="tdTableDefinition">default_scan_processing_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field MUST reference the 'id' of the default data processing for the scans. If an acquisition does not reference any data processing, it implicitly refers to this data processing. This field is required because the minimum amount of data processing that any format will undergo is "conversion to mzDB".</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">default_chrom_processing_id
+                &nbsp;(<a href="#data_processing">FK</a>)
+              </td><td class="tdTableDefinition">default_chrom_processing_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field MUST reference the 'id' of the default data processing for the chromatograms. If an acquisition does not reference any data processing, it implicitly refers to this data processing. This field is required because the minimum amount of data processing that any format will undergo is "conversion to mzDB".</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#source_file">source_file</a> through (default_source_file_id)</li>
+<li>
+<a href="#sample">sample</a> through (sample_id)</li>
+<li>
+<a href="#instrument_configuration">instrument_configuration</a> through (default_instrument_config_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+<li>
+<a href="#data_processing">data_processing</a> through (default_chrom_processing_id)</li>
+<li>
+<a href="#data_processing">data_processing</a> through (default_scan_processing_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+<li>
+<a href="#run_slice">run_slice</a> referencing (id)</li>
+<li>
+<a href="#chromatogram">chromatogram</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>run_slice<a name="run_slice"></a>
+</h1>
+<h2>
+      (Physical Name: run_slice)
+      </h2>
+<p class="comment">A "run slice" is a region of the run containing MS peaks in a given m/z scan window and in the whole duration of the run.<br>Constraints: UNIQUE( number, ms_level )</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">ms_level</td><td class="tdTableDefinition">ms_level</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Stage of MS achieved for this run slice in a multi stage mass spectrometry experiment.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">number</td><td class="tdTableDefinition">number</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field allows a series of consecutive run slices to be placed in the correct order.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">begin_mz</td><td class="tdTableDefinition">begin_mz</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The theoretical minimum m/z of the run slice.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">end_mz</td><td class="tdTableDefinition">end_mz</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The theoretical maximum m/z of the run slice.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">run_id
+                &nbsp;(<a href="#run">FK</a>)
+              </td><td class="tdTableDefinition">run_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding run.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#run">run</a> through (run_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#bounding_box">bounding_box</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>sample<a name="sample"></a>
+</h1>
+<h2>
+      (Physical Name: sample)
+      </h2>
+<p class="comment">Description of the samples used to generate the dataset.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for the sample description.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>scan_settings<a name="scan_settings"></a>
+</h1>
+<h2>
+      (Physical Name: scan_settings)
+      </h2>
+<p class="comment">Description of the acquisition settings of the instrument prior to the start of the run.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can contain optionally the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#source_file_scan_settings_map">source_file_scan_settings_map</a> referencing (id)</li>
+<li>
+<a href="#target">target</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>shared_param_tree<a name="shared_param_tree"></a>
+</h1>
+<h2>
+      (Physical Name: shared_param_tree)
+      </h2>
+<p class="comment">A tree of CVParam and UserParam elements that can be shared with some mzDB tables.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data</td><td class="tdTableDefinition">data</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain a tree of cvParams and userParams as an XML string. The later must valid regarding the schema defined in the correspondig param_tre_shema record.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">schema_name
+                &nbsp;(<a href="#param_tree_schema">FK</a>)
+              </td><td class="tdTableDefinition">schema_name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the name of the appropriate param tree schema.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#param_tree_schema">param_tree_schema</a> through (schema_name)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#instrument_configuration">instrument_configuration</a> referencing (id)</li>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+<li>
+<a href="#scan_settings">scan_settings</a> referencing (id)</li>
+<li>
+<a href="#software">software</a> referencing (id)</li>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+<li>
+<a href="#target">target</a> referencing (id)</li>
+<li>
+<a href="#sample">sample</a> referencing (id)</li>
+<li>
+<a href="#processing_method">processing_method</a> referencing (id)</li>
+<li>
+<a href="#source_file">source_file</a> referencing (id)</li>
+<li>
+<a href="#chromatogram">chromatogram</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>software<a name="software"></a>
+</h1>
+<h2>
+      (Physical Name: software)
+      </h2>
+<p class="comment">Software used to acquire and/or process the data.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A unique name for this software.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">version</td><td class="tdTableDefinition">version</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The software version.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#instrument_configuration">instrument_configuration</a> referencing (id)</li>
+<li>
+<a href="#processing_method">processing_method</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>source_file<a name="source_file"></a>
+</h1>
+<h2>
+      (Physical Name: source_file)
+      </h2>
+<p class="comment">Descriptions of the source files this mzDB was generated or derived from.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Name of the source file, without reference to location (either URI or local path).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">location</td><td class="tdTableDefinition">location</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">URI-formatted location where the file was retrieved.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#run">run</a> referencing (id)</li>
+<li>
+<a href="#source_file_scan_settings_map">source_file_scan_settings_map</a> referencing (id)</li>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>source_file_scan_settings_map<a name="source_file_scan_settings_map"></a>
+</h1>
+<h2>
+      (Physical Name: source_file_scan_settings_map)
+      </h2>
+<p class="comment">Mapping between the source files and the acquisition settings.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">scan_settings_id (PK)
+                &nbsp;(<a href="#scan_settings">FK</a>)
+              </td><td class="tdTableDefinition">scan_settings_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding scan settings.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">source_file_id (PK)
+                &nbsp;(<a href="#source_file">FK</a>)
+              </td><td class="tdTableDefinition">source_file_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding source file.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#source_file">source_file</a> through (source_file_id)</li>
+<li>
+<a href="#scan_settings">scan_settings</a> through (scan_settings_id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>spectrum<a name="spectrum"></a>
+</h1>
+<h2>
+      (Physical Name: spectrum)
+      </h2>
+<p class="comment">The structure that captures the generation of a peak list. Also describes some of the parameters for the mass spectrometer for a given acquisition (or list of acquisitions). Subsidiary acquisition data points are stored in corresponding bounding boxes.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">initial_id</td><td class="tdTableDefinition">initial_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The native identifier of the spectrum as an integer.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">title</td><td class="tdTableDefinition">title</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">A title describing this spectrum.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">cycle</td><td class="tdTableDefinition">cycle</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The cycle number this spectrum refers to. A given cycle will typically contains an MS1 scan and all related MS2 scans.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">time</td><td class="tdTableDefinition">time</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The scan starting time in seconds.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">ms_level</td><td class="tdTableDefinition">ms_level</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Stage of MS achieved for this spectrum in a multi stage mass spectrometry experiment.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">activation_type</td><td class="tdTableDefinition">activation_type</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The type of activation used for fragmentation.<br>This field stores only a 3 letters label (e.g. <br>CID, ETD, HCD), but more detailled information could be provided using the param_tree field.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">tic</td><td class="tdTableDefinition">tic</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The total ion current of this spectrum.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">base_peak_mz</td><td class="tdTableDefinition">base_peak_moz</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The m/z value of the most intense peak.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">base_peak_intensity</td><td class="tdTableDefinition">base_peak_intensity</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The intensity value of the most intense peak.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">main_precursor_mz</td><td class="tdTableDefinition">main_precursor_mz</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The m/z value of the main precursor ion (first entry of precursor list).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">main_precursor_charge</td><td class="tdTableDefinition">main_precursor_charge</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The charge value of the main precursor ion (first entry of precursor list).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_points_count</td><td class="tdTableDefinition">data_points_count</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The number of data points for this spectrum.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">scan_list</td><td class="tdTableDefinition">scan_list</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">List and descriptions of scans as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">precursor_list</td><td class="tdTableDefinition">precursor_list</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">List and descriptions of precursor isolations to the spectrum currently being described, ordered.<br>This list is stored as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">product_list</td><td class="tdTableDefinition">product_list</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">List and descriptions of product isolations to the spectrum currently being described, ordered.<br>This list is stored as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">instrument_configuration_id
+                &nbsp;(<a href="#instrument_configuration">FK</a>)
+              </td><td class="tdTableDefinition">instrument_configuration_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the appropriate instrument configuration.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">source_file_id
+                &nbsp;(<a href="#source_file">FK</a>)
+              </td><td class="tdTableDefinition">source_file_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the appropriate source_file.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">run_id
+                &nbsp;(<a href="#run">FK</a>)
+              </td><td class="tdTableDefinition">run_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the corresponding run.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_processing_id
+                &nbsp;(<a href="#data_processing">FK</a>)
+              </td><td class="tdTableDefinition">data_processing_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the 'id' of the appropriate data_processing (see processing_method table).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">data_encoding_id
+                &nbsp;(<a href="#data_encoding">FK</a>)
+              </td><td class="tdTableDefinition">data_encoding_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must reference the 'id' of the appropriate data_encoding.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">bb_first_spectrum_id
+                &nbsp;(<a href="#spectrum">FK</a>)
+              </td><td class="tdTableDefinition">bb_first_spectrum_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The first spectrum id of the bounding box (BB) this scan refers to.<br>In the mzDB a BB is only linked to the first and last spectra of the stored data region. Thus to know the BB corresponding to each spectrum of the run one has to use this foreign key referencing a spectrum that is effectively linked to a BB.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#spectrum">spectrum</a> through (bb_first_spectrum_id)</li>
+<li>
+<a href="#run">run</a> through (run_id)</li>
+<li>
+<a href="#source_file">source_file</a> through (source_file_id)</li>
+<li>
+<a href="#instrument_configuration">instrument_configuration</a> through (instrument_configuration_id)</li>
+<li>
+<a href="#data_encoding">data_encoding</a> through (data_encoding_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+<li>
+<a href="#data_processing">data_processing</a> through (data_processing_id)</li>
+</ul>
+<p class="subTitle">Referenced By</p>
+<ul>
+<li>
+<a href="#spectrum">spectrum</a> referencing (id)</li>
+<li>
+<a href="#bounding_box">bounding_box</a> referencing (id)</li>
+<li>
+<a href="#bounding_box">bounding_box</a> referencing (id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>table_param_tree_schema<a name="table_param_tree_schema"></a>
+</h1>
+<h2>
+      (Physical Name: table_param_tree_schema)
+      </h2>
+<p class="comment">This table allows to 'logically' map a given table to its corresponding param_tree schema.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">table_name (PK)</td><td class="tdTableDefinition">table_name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The name of the table.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">schema_name
+                &nbsp;(<a href="#param_tree_schema">FK</a>)
+              </td><td class="tdTableDefinition">schema_name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The name of the schema.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#param_tree_schema">param_tree_schema</a> through (schema_name)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>target<a name="target"></a>
+</h1>
+<h2>
+      (Physical Name: target)
+      </h2>
+<p class="comment">Contains the target list (or 'inclusion list') configured prior to the run.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">param_tree</td><td class="tdTableDefinition">CLOB</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field must contain the table cvParams and userParams as an XML string (see XML schema specifications).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">shared_param_tree_id
+                &nbsp;(<a href="#shared_param_tree">FK</a>)
+              </td><td class="tdTableDefinition">shared_param_tree_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">An optional reference to a shared_param_tree, which is a reusable container of one or more cvParams.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">scan_settings_id
+                &nbsp;(<a href="#scan_settings">FK</a>)
+              </td><td class="tdTableDefinition">scan_settings_id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#scan_settings">scan_settings</a> through (scan_settings_id)</li>
+<li>
+<a href="#shared_param_tree">shared_param_tree</a> through (shared_param_tree_id)</li>
+</ul>
+</div>
+</div>
+<div class="tableNameHeading">
+<h1>user_term<a name="user_term"></a>
+</h1>
+<h2>
+      (Physical Name: user_term)
+      </h2>
+<p class="comment">This table lists the uncontrolled user parameters used in the mzDB file.</p>
+</div>
+<div class="table">
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading tdLogicalColName">Logical Column Name</td><td class="tdTableHeading tdPhysicalColName">Physical Column Name</td><td class="tdTableHeading tdDataType">Type</td><td class="tdTableHeading tdPkFlag">PK</td><td class="tdTableHeading tdNullFlag">Nullable</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">id (PK)</td><td class="tdTableDefinition">id</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition" nowrap>PK</td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">Automatically incremented primary key.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">name</td><td class="tdTableDefinition">name</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The unique name for the parameter.</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">type</td><td class="tdTableDefinition">type</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap>NOT NULL</td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">The datatype of the parameter, where appropriate (e.g.: xsd:float).</div>
+</td>
+</tr>
+<tr valign="top">
+<td class="tdTableDefinition">unit_accession
+                &nbsp;(<a href="#cv_unit">FK</a>)
+              </td><td class="tdTableDefinition">unit_accession</td><td class="tdTableDefinition">VARCHAR(0)</td><td class="tdTableDefinition" nowrap></td><td class="tdTableDefinition" nowrap></td>
+</tr>
+<tr>
+<td colspan="4">
+<div class="comment">This field can optionally reference the CV accession number of the appropriate unit.</div>
+</td>
+</tr>
+</table>
+<div class="references">
+<p class="subTitle">References</p>
+<ul>
+<li>
+<a href="#cv_unit">cv_unit</a> through (unit_accession)</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
