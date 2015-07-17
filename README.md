@@ -30,10 +30,10 @@ id INTEGER PRIMARY KEY AUTOINCREMENT,
 ms_level INTEGER NOT NULL, // 1, 2, 3...
 acquisition_mode TEXT NOT NULL, // DDA/DIA
 activation_type TEXT NOT NULL, // CID, ETD, HCD...
-min_mz REAL NOT NULL, // min m/z of the layer
-max_mz REAL NOT NULL, // max m/z of the layer
-min_parent_mz REAL, // DIA only
-max_parent_mz REAL, // DIA only
+min_mz REAL NOT NULL, // min m/z of this channel
+max_mz REAL NOT NULL, // max m/z of this channel
+min_parent_mz REAL, // DIA only and ms_level > 1
+max_parent_mz REAL, // DIA only and ms_level > 1
 param_tree TEXT
 )
 </pre>
