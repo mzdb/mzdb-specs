@@ -14,10 +14,38 @@ This folder contains some other documents for developers who prefer to have acce
 
 ## Roadmap
 
-Current version of the mzDB model is 0.6.
+Current version of the mzDB model is 0.7.
+Next version (0.8) will include modifications related to the storage of peaks in the bounding boxes.
+The goals are:
+* optimize the data loading of peaks from a given bounding box
+* add support for the MS-Numpress compression algorithms
 
-Next version (0.7) will be related to the small changes in the data_encoding table.
-The representation of number precisions for m/z and intensity values is ambiguous, because the current one requires to write two consecutive CvTerms in a proper order (m/z value CvTerm then itensity value one). However it may not be really clear for somebody who doesn't know this convention.
+This version may also introduce the concept of acquisition channels.
+Eeach channel represents a collection of MS data acquired with the same acquisition settings during the run. 
+It should add support for hybrid DDA et DIA acquisitions.
+
+<pre>
+CREATE TABLE acquisition_channel (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+ms_level INTEGER NOT NULL, // 1, 2, 3...
+acquisition_mode TEXT NOT NULL, // DDA/DIA
+activation_type TEXT NOT NULL, // CID, ETD, HCD...
+min_mz REAL NOT NULL, // min m/z of the layer
+max_mz REAL NOT NULL, // max m/z of the layer
+min_parent_mz REAL, // DIA only
+max_parent_mz REAL, // DIA only
+param_tree TEXT
+)
+</pre>
+
+Each spectrum and each spectrum will have a FK corresponding to a given acquisition channel.
+
+## Changelog
+
+### Version 0.7
+
+Some changes in the data_encoding table.
+The representation of number precisions for m/z and intensity values was ambiguous, because the previous one required to write two consecutive CvTerms in a proper order (m/z value CvTerm then itensity value one). However it was not really clear for somebody who doesn't know this convention.
 
 We have thus chosen to update the structure of this table by adding two new columns:
 * mz_precision => could be 32|64
@@ -25,7 +53,11 @@ We have thus chosen to update the structure of this table by adding two new colu
 
 Left and right HWHMs precision is always 32bits.
 
-The param_tree column is kept but will be empty for the moment.
+The param_tree column is kept but is NULL by default.
+
+### Version 0.6
+
+Table bounding_box_msn_rtree added to support indexing of DIA datasets.
 
 ## Benchmarks and use cases
 
